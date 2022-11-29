@@ -23,4 +23,14 @@ App:AddElement(Lib.Gui.GenTextField("P2 coordinates:", 10, 100))
 App:AddElement(Lib.Gui.GenTextField("Distance P1-P2:", 130, 60))
 
 -- result
-App:AddElement(Components.Custom.Result:new())
+resId = App:AddElement(Components.Custom.Result:new())
+
+-- copy/paste bindings
+function App.Interactions.Copy()
+    return App:ElValGet(resId, "Label")
+end
+App.Interactions.Cut = App.Interactions.Copy
+
+function App.Interactions.Paste(text)
+    App:ElValSet(App._focused, "Value", text)
+end
