@@ -1,0 +1,20 @@
+Inherit: Base.InputField
+
+# default fields
+Value: 0
+ValuePreserveString: true
+
+Type: number
+
+Label: "X"
+LabelWidth: 15
+
+Width: 70
+
+# custom fields
+Coordinate: "X1"
+
+# functions
+Update: |
+  Coordinates[self.Coordinate] = tonumber(self.Value)
+  return true

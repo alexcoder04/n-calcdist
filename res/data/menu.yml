@@ -1,0 +1,10 @@
+
+ - Id: edit
+   Name: Edit
+   Submenues:
+    - Id: clear
+      Name: Clear
+      Function: |
+        for _, id in ipairs(inputFieldIds) do
+          App:ElementExec(id, function(self) self.Value = 0 end)
+        end

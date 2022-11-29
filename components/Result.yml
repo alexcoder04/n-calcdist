@@ -1,0 +1,10 @@
+Inherit: Base.TextField
+
+Label: "0"
+LabelPreserveString: true
+
+PosX: 130
+PosY: 80
+
+Update: |
+  self.Label = tostring(math.sqrt((Coordinates.X2 - Coordinates.X1)^2 + (Coordinates.Y2 - Coordinates.Y1)^2 + (Coordinates.Z2 - Coordinates.Z1)^2))
