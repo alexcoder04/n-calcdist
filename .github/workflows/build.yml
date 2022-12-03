@@ -27,6 +27,7 @@ jobs:
         echo "$HOME/bin" >> $GITHUB_PATH
     
     - name: Install Sol
+      run: |
         git clone "https://github.com/alexcoder04/sol-tools" "$HOME/sol-tools"
         cd "$HOME/sol-tools"
         make linux
