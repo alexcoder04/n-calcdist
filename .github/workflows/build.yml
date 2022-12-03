@@ -16,10 +16,10 @@ jobs:
     
     - name: Install Sol
       run: |
-        mkdir ~/bin
+        mkdir -vp ~/bin
         wget -L -O ~/bin/sol "https://github.com/alexcoder04/sol-tools/releases/latest/download/sol"
-        chmod +x ~/bin/sol
-        echo "~/bin" >> $GITHUB_PATH
+        chmod -v +x ~/bin/sol
+        echo "$HOME/bin" >> $GITHUB_PATH
     
     - name: Install Luna
       run: |
