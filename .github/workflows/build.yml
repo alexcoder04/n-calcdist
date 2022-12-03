@@ -17,9 +17,10 @@ jobs:
     - name: Install Sol
       run: |
         mkdir ~/bin
-        wget "https://github.com/alexcoder04/sol-tools/releases/download/latest/sol"
+        wget "https://github.com/alexcoder04/sol-tools/releases/latest/download/sol"
         chmod +x ~/bin/sol
         echo "~/bin" >> $GITHUB_PATH
+    
     - name: Install Luna
       run: |
         git clone "https://github.com/ndless-nspire/Luna" ~/Luna
