@@ -17,7 +17,7 @@ jobs:
     - name: Install Sol
       run: |
         mkdir ~/bin
-        wget "https://github.com/alexcoder04/sol-tools/releases/latest/download/sol"
+        wget -L -O ~/bin/sol "https://github.com/alexcoder04/sol-tools/releases/latest/download/sol"
         chmod +x ~/bin/sol
         echo "~/bin" >> $GITHUB_PATH
     
