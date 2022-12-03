@@ -14,12 +14,24 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Install Sol
+    - name: Cache bin folder
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-bin
+        path: |
+          ~/bin
+    
+    - name: Create bin folder
       run: |
-        mkdir -vp ~/bin
-        wget -L -O ~/bin/sol "https://github.com/alexcoder04/sol-tools/releases/latest/download/sol"
-        chmod -v +x ~/bin/sol
+        mkdir -vp "$HOME/bin"
         echo "$HOME/bin" >> $GITHUB_PATH
+    
+    - name: Install Sol
+        git clone "https://github.com/alexcoder04/sol-tools" "$HOME/sol-tools"
+        cd "$HOME/sol-tools"
+        make linux
+        install -Dm755 build/sol "$HOME/bin/sol"
+        cd "$OLDPWD"
     
     - name: Install Luna
       run: |
@@ -33,7 +45,7 @@ jobs:
       run: make build
 
     - name: Save tns
-      uses: actions/upload-artifact@v3.1.1
+      uses: actions/upload-artifact@v3
       with:
         name: tns
         files: |
