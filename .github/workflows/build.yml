@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Sol
+      run: |
+        mkdir ~/bin
+        wget "https://github.com/alexcoder04/sol-tools/releases/download/latest/sol"
+        chmod +x ~/bin/sol
+        echo "~/bin" >> $GITHUB_PATH
+    - name: Install Luna
+      run: |
+        git clone "https://github.com/ndless-nspire/Luna" ~/Luna
+        cd ~/Luna
+        make
+        install -Dm755 luna ~/bin/luna
+        cd "$OLDPWD"
+
+    - name: Build project
+      run: make build
+
+    - name: Save tns
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: tns
+        files: |
+          calcdist.tns
