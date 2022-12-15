@@ -14,38 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Cache bin folder
-      uses: actions/cache@v3
-      with:
-        key: ${{ runner.os }}-bin
-        path: |
-          ~/bin
-    
-    - name: Create bin folder
-      run: |
-        mkdir -vp "$HOME/bin"
-        echo "$HOME/bin" >> $GITHUB_PATH
-    
-    - name: Setup Go environment
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
-    
-    - name: Install Sol
-      run: |
-        git clone "https://github.com/alexcoder04/sol-tools" "$HOME/sol-tools"
-        cd "$HOME/sol-tools"
-        make linux
-        install -Dm755 build/sol "$HOME/bin/sol"
-        cd "$OLDPWD"
-    
-    - name: Install Luna
-      run: |
-        git clone "https://github.com/ndless-nspire/Luna" ~/Luna
-        cd ~/Luna
-        make
-        install -Dm755 luna ~/bin/luna
-        cd "$OLDPWD"
+    - name: Setup nspire Tools
+      uses: alexcoder04/setup-nspire-tools@v1.0.0
 
     - name: Build project
       run: make build
